@@ -18,7 +18,7 @@ Aplicación Next.js de una sola experiencia desplegable en Vercel. Una ruta de s
 
 ## Personalización del modelo
 
-El fine-tuning de OpenAI no está disponible para organizaciones nuevas. Se realizará un experimento independiente de LoRA en Colab sobre Qwen2.5-0.5B-Instruct, con aproximadamente 40-50 ejemplos y comparación antes/después. El conocimiento actual del destino procede del RAG; LoRA se utiliza para aprender formato y comportamiento.
+El fine-tuning de OpenAI no está disponible para organizaciones nuevas. Se ha realizado un experimento independiente de LoRA en Colab sobre Qwen3-0.6B, con 120 ejemplos y comparación antes/después. El conocimiento actual del destino procede del RAG; LoRA se utiliza para aprender formato y comportamiento. El resultado mejora la adherencia a las reglas de Itinera, aunque también muestra que un dataset pequeño y estructurado puede hacer la respuesta más rígida.
 
 ## Coste y seguridad
 
@@ -32,5 +32,5 @@ El fine-tuning de OpenAI no está disponible para organizaciones nuevas. Se real
 
 1. Aplicación pública.
 2. Repositorio limpio con README y archivo de ejemplo de variables.
-3. Notebook LoRA y dataset mínimo.
+3. Notebook LoRA ejecutado y evidencia de comparación antes/después.
 4. Memoria breve en primera persona, siguiendo la plantilla del caso práctico.
