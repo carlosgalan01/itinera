@@ -267,7 +267,7 @@ export default function Home() {
     <main>
       <header className="topbar">
         <a className="brand" href="#top" aria-label="Itinera home">
-          <span className="brandMark">i</span><span>itinera</span>
+          <img className="brandLogo" src="/itinera-logo.svg" alt="Itinera" />
         </a>
         <nav>
           <a href="#planner">{t.navHow}</a>
@@ -416,7 +416,7 @@ export default function Home() {
         </section>
       )}
 
-      <footer><div className="brand"><span className="brandMark">i</span><span>itinera</span></div><p>{t.footer}</p><small>© 2026 · MVP académico</small></footer>
+      <footer><div className="brand"><img className="brandLogo" src="/itinera-logo.svg" alt="Itinera" /></div><p>{t.footer}</p><small>© 2026 · MVP académico</small></footer>
     </main>
   );
 }

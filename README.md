@@ -1,17 +1,18 @@
 # Itinera
 
-Itinera es un planificador de viajes personalizado creado como MVP académico de *LLM Customization*. Combina un modelo generativo con búsqueda web, datos abiertos de lugares y meteorología, y presenta el resultado como un itinerario visual, modificable y listo para imprimir.
+Itinera es un planificador de viajes personalizado hecho como MVP para la asignatura de *LLM Customization*. La idea era montar algo que una persona pudiera abrir y utilizar, no simplemente un notebook que devolviera una lista de sitios. El usuario indica destino, fechas, presupuesto e intereses; la aplicación busca contexto y devuelve una primera propuesta de viaje organizada por días.
 
-## Qué incluye
+La demo está disponible en: [itinera-omega.vercel.app](https://itinera-omega.vercel.app/).
 
-- formulario de destino, fechas, presupuestos, intereses y necesidades;
-- límite de siete días para controlar latencia y coste de la demostración;
-- generación con OpenAI Responses API y búsqueda web;
-- recuperación de contexto con Open-Meteo y OpenTripMap;
-- fuentes visibles, advertencias y degradación segura a modo demo;
-- refinamientos de bajo coste: más barato, más relajado o adaptado a lluvia;
-- español/inglés, modo claro/oscuro, guardado local e impresión;
-- experimento LoRA independiente en `notebooks/`.
+## Qué hace realmente
+
+- recoge destino, fechas, viajeros, dos bloques de presupuesto, intereses y observaciones;
+- limita los viajes a siete días para que la demo no se vuelva lenta ni empiece a gastar tokens sin control;
+- consulta clima, lugares y búsqueda web antes de generar la propuesta;
+- muestra fuentes, avisos y datos orientativos para que no se confunda una recomendación con una reserva real;
+- permite hacer el viaje más barato, más relajado o adaptarlo a lluvia sin lanzar otra llamada al modelo;
+- incluye español/inglés, modo claro/oscuro, guardado local e impresión;
+- incorpora un experimento LoRA independiente en `notebooks/`.
 
 ## Puesta en marcha
 
@@ -33,7 +34,7 @@ Sin claves, la aplicación sigue funcionando en modo demostración. `OPENAI_API_
 
 ## Despliegue
 
-El proyecto está preparado para Vercel. Importa el repositorio, deja que detecte **Next.js** y añade las variables anteriores en el panel de Vercel. Para una prueba docente conviene fijar un límite de gasto en OpenAI y usar un código temporal.
+El proyecto está preparado para Vercel: basta con importar el repositorio, dejar que detecte Next.js y añadir las variables anteriores. Para la demo conviene fijar un límite de gasto en OpenAI y usar un código temporal. Las claves no se exponen en el navegador.
 
 ## Estructura
 
@@ -42,4 +43,4 @@ El proyecto está preparado para Vercel. Importa el repositorio, deja que detect
 - `notebooks/`: experimento de fine-tuning LoRA.
 - `docs/`: plan del proyecto y memoria de entrega.
 
-Los precios, horarios y disponibilidad se muestran como orientativos: la aplicación enlaza las fuentes para que el usuario confirme antes de reservar.
+Los precios, horarios y disponibilidad son orientativos. La aplicación intenta ahorrar el trabajo inicial de organizar un viaje, no sustituir la comprobación final antes de reservar.
