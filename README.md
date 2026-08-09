@@ -1,6 +1,6 @@
 # Itinera
 
-Itinera es un planificador de viajes personalizado hecho como MVP para la asignatura de *LLM Customization*. La idea era montar algo que una persona pudiera abrir y utilizar, no simplemente un notebook que devolviera una lista de sitios. El usuario indica destino, fechas, presupuesto e intereses; la aplicación busca contexto y devuelve una primera propuesta de viaje organizada por días.
+Itinera es un planificador de viajes personalizado hecho como MVP para la asignatura de *Generative AI*. La idea era montar algo que una persona pudiera abrir y utilizar, no simplemente un notebook que devolviera una lista de sitios. El usuario indica destino, fechas, presupuesto e intereses; la aplicación busca contexto y devuelve una primera propuesta de viaje organizada por días.
 
 La demo está disponible en: [itinera-omega.vercel.app](https://itinera-omega.vercel.app/).
 
@@ -41,6 +41,6 @@ El proyecto está preparado para Vercel: basta con importar el repositorio, deja
 - `app/page.tsx`: interfaz y refinamientos.
 - `app/api/plan/route.ts`: orquestación de APIs, prompt y fallback.
 - `notebooks/`: experimento de fine-tuning LoRA.
-- `docs/`: plan del proyecto y memoria de entrega.
+
 
 Los precios, horarios y disponibilidad son orientativos. La aplicación intenta ahorrar el trabajo inicial de organizar un viaje, no sustituir la comprobación final antes de reservar.
