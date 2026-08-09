@@ -161,13 +161,12 @@ export default function Home() {
 
   useEffect(() => {
     const savedTheme = (localStorage.getItem("itinera-theme") as Theme) || "light";
-    const savedPlan = localStorage.getItem("itinera-plan");
+    // Travel plans are intentionally ephemeral: a previous visitor's itinerary
+    // must never be shown when the page is opened or refreshed.
+    localStorage.removeItem("itinera-plan");
     const frame = requestAnimationFrame(() => {
       setTheme(savedTheme);
       document.documentElement.dataset.theme = savedTheme;
-      if (savedPlan) {
-        try { setPlan(JSON.parse(savedPlan)); } catch { /* ignore stale local data */ }
-      }
     });
     return () => cancelAnimationFrame(frame);
   }, []);
@@ -213,7 +212,6 @@ export default function Home() {
       if (!response.ok) throw new Error("request failed");
       const result = (await response.json()) as PlanResult;
       setPlan(result);
-      localStorage.setItem("itinera-plan", JSON.stringify(result));
       setTimeout(() => document.getElementById("trip")?.scrollIntoView({ behavior: "smooth" }), 100);
     } catch {
       setError(t.error);
@@ -255,7 +253,6 @@ export default function Home() {
       refined.tips = [es ? "Lleva una alternativa cubierta en el mismo barrio para cada tramo." : "Keep a covered alternative in the same neighbourhood for each part of the day.", ...refined.tips];
     }
     setPlan(refined);
-    localStorage.setItem("itinera-plan", JSON.stringify(refined));
   }
 
   const totalActivities = useMemo(
@@ -271,7 +268,7 @@ export default function Home() {
         </a>
         <nav>
           <a href="#planner">{t.navHow}</a>
-          <a href="#trip">{t.navSaved}</a>
+          {plan && <a href="#trip">{t.navSaved}</a>}
         </nav>
         <div className="controls">
           <button className="iconButton" onClick={toggleTheme} aria-label="Toggle theme">
@@ -411,7 +408,7 @@ export default function Home() {
               <section className="sourcesPanel"><h3>{t.sources}</h3>{plan.sources.slice(0,8).map((source, i) => <a key={i} href={source.url} target="_blank" rel="noreferrer"><span>{source.type}</span>{source.title}<b>↗</b></a>)}</section>
             </div>
             <div className="warningBox"><span>!</span><div><strong>{t.warning}</strong>{plan.warnings.map((warning, i) => <p key={i}>{warning}</p>)}</div></div>
-            <div className="refineBar"><div><p>{t.refine}</p><button onClick={() => refinePlan("cheaper")}>{t.cheaper}</button><button onClick={() => refinePlan("relaxed")}>{t.relaxed}</button><button onClick={() => refinePlan("rain")}>{t.rain}</button></div><button className="newTrip" onClick={() => { setPlan(null); localStorage.removeItem("itinera-plan"); document.getElementById("planner")?.scrollIntoView({behavior:"smooth"}); }}>{t.newTrip} +</button></div>
+            <div className="refineBar"><div><p>{t.refine}</p><button onClick={() => refinePlan("cheaper")}>{t.cheaper}</button><button onClick={() => refinePlan("relaxed")}>{t.relaxed}</button><button onClick={() => refinePlan("rain")}>{t.rain}</button></div><button className="newTrip" onClick={() => { setPlan(null); document.getElementById("planner")?.scrollIntoView({behavior:"smooth"}); }}>{t.newTrip} +</button></div>
           </div>
         </section>
       )}
